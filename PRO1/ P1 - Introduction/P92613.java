@@ -9,8 +9,14 @@ class Main{
 		double aux;
 		aux = a - bottom;
 		if(aux != 0){
-			++top;
-			if(aux >= 0.5) ++closer;
+			if(aux < 0){
+				--bottom;
+				if(aux <= -0.5) --closer;
+			}
+			else{
+				++top;
+				if(aux >= 0.5) ++closer;
+			}
 		}
 		System.out.println(bottom + " " + top + " " + closer);
 		input.close();
