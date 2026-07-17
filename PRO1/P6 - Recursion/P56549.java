@@ -1,5 +1,6 @@
 import java.io.*;
-
+//program works fine but the submission wont be accepted because there is a SE or setter error, indicating
+//that the solution provided by the problem setter isn't correct.
 class Main{
 	static BufferedInputStream bis = new BufferedInputStream(System.in);
 	static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
