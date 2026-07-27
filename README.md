@@ -1,2 +1,2 @@
 # Java
-My projects in java from the jutge.org coding web page
+My projects in java from the jutge.org coding website
