@@ -1,2 +1,2 @@
 # Java
-My projects in java from the jutge.org coding website
+My projects in java submitted to the jutge.org coding website with a positive rating.
