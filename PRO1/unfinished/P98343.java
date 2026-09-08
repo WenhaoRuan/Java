@@ -46,59 +46,84 @@ class Solution{
             if(!first) bw.write(' ');
             if(n < 10)  bw.write(unitats[n]);
             else if(n < 20) bw.write(deuRelated[n - 10]);
-            else if(n < 30){
-                bw.write(desenes[n/10 - 2]);
-                if(n > 20){
-                    bw.write("-i-");
-                    bw.write(unitats[n - 20]);
-                }
-            }
             else if(n < 100){
-                bw.write(desenes[n/10 - 2]);
+                if(n < 30){
+                    bw.write(desenes[n/10 - 2]);
+                    if(n > 20) bw.write("-i");
+                }
+                else bw.write(desenes[n/10 - 2]);
                 if((n % 10) != 0){
                     bw.write('-');
-                    bw.write(unitats[n % 10]);
+                    printPart(n % 10);
                 }
+
             }
             else{
-                if(n/100 != 1){
-                    bw.write(unitats[n/100]);
+                if(n/100 > 1){
+                    printPart(n/100, first);
                     bw.write('-');
-                    bw.write("cents ");
+                    bw.write("cents");
                 }
                 else{
-                    bw.write("cent ");
+                    bw.write("cent");
                 }
                 if(n%100 > 0) printPart(n%100, false);
             }
         }
 
         public static void printRes(int n)throws IOException{
-            
+            int giga = n / 10e9;
+            int mega = (n % 10e9) / 10e6;
+            int kilo = (n % 10e6) / 10e3;
+            int resta = n % 10e3;
+            int first = true;
+            if(giga > 0){
+                if(giga > 1){ 
+                    printPart(giga, first);
+                    bw.write(" mil");
+                }
+                else bw.write("mil");
+                first = false;
+                if(mega == 0) bw.write(" milions");
+            }
+            if(mega > 0){
+                printPart(mega, first);
+                if(first && mega > 1) first = false;
+                if(first) bw.write(" milio");
+                else bw.write(" milions");
+            }
+            if(kilo > 0){
+                printPart(kilo, first);
+                if(first) first = false;
+                bw.write(" mil");
+            }
+            if(first || resta != 0) printPart(resta, first);
+        }
 
         public static void printEnd()throws IOException{
             bw.write(".\n");
         }
 
+        public static void end()throws IOException{
+            bw.close();
+        }
     }
 
+    public static class Game{
+        public static void escriuNumero(int n)throws IOException{
+            IO.printNat(n);
+            IO.printStart();
+            IO.printRes(n);
+            IO.printEnd();
+        }
+    }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+class Main{
+    public static void main(String[] args)throws IOException{
+        int n;
+        while((n = Solution.IO.readNat()) != -1)
+            SolutionGame.escriuNumero(n);
+        Solution.IO.end();
+    }
+}
